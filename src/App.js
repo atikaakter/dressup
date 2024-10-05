@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import ProductList from './ProductList';
+import Cart from './Cart';
+import Search from './Search';
 
 function App() {
+  const [cartItems, setCartItems] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');  // You already have this state
+
+  const addToCart = (product) => {
+    setCartItems([...cartItems, product]);
+  };
+
+  const removeFromCart = (id) => {
+    setCartItems(cartItems.filter(item => item.id !== id));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <Link to="/">Products</Link> | <Link to="/cart">Cart ({cartItems.length})</Link>
+        </nav>
+        <Search setSearchQuery={setSearchQuery} /> {/* Search functionality */}
+
+        <Routes>
+          {/* Pass searchQuery to ProductList */}
+          <Route path="/" element={<ProductList addToCart={addToCart} searchQuery={searchQuery} />} />
+          <Route path="/cart" element={<Cart cartItems={cartItems} removeFromCart={removeFromCart} />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/dressup/static/css/main.5f31ec4c.css",
+    "main.js": "/dressup/static/js/main.c5ecb08f.js",
+    "index.html": "/dressup/index.html",
+    "main.5f31ec4c.css.map": "/dressup/static/css/main.5f31ec4c.css.map",
+    "main.c5ecb08f.js.map": "/dressup/static/js/main.c5ecb08f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5f31ec4c.css",
+    "static/js/main.c5ecb08f.js"
+  ]
+}
